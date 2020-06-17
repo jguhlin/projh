@@ -1,0 +1,65 @@
+name: pjh
+version: "0.0.1"
+author: Joseph Guhlin <joseph.guhlin@gmail.com>
+about: CLI project tracking
+apps:
+    - ls:
+        about: List project tasks. If not in a project, list projects
+        version: "0.0.1"
+        args:
+            - project:
+                help: List tasks for a specific project
+                takes_value: true
+                index: 1
+            - projects:
+                help: List projects
+                short: p
+    - create:
+        about: Create a new project
+        version: "0.0.1"
+        author: Joseph Guhlin <joseph.guhlin@gmail.com>
+        args:
+            - name:
+                takes_value: true
+                index: 1
+                help: Name of Project
+    - add:
+        about: Add file(s) or directories to project, and/or to a task.
+        FILES:
+            multiple: true
+            help: File, Files, and/or Directories to add to project
+        project:
+            short: p
+            help: Specific project to add to, defaults to current (if available)
+        task: 
+            short: t
+            help: Specific task to add to, defaults to current (if available)
+    - task:
+        help: Add a task to a project.
+        project:
+            short: p
+            help: Specific project, defaults to current (if available)
+        task:
+            multiple: true
+            help: Task to add
+    - result:
+        help: Add a result file(s) to a project or task.
+        project:
+            short: p
+            help: Specific project, defaults to current (if available)
+        task: 
+            short: t
+            help: Specific task to add to, defaults to current (if available)
+        result: 
+            multiple: true
+            help: Result file(s) to add.
+        note:
+            help: Add a note message as well.
+    - update:
+        help: Add a text update to a project or task.
+    - SHELL_current:
+        help: Lists which project we are currently in. For use in shells. outputs 'np' if not in a project
+        false:
+            default: "np"
+            help: Output to supply if we are not currently in a project.
+
